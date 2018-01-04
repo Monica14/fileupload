@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+    <body ng-app="fileUpload">
+        <!-- <h1>Angular Node File Upload</h1> -->
+        <form  ng-controller="MyCtrl as up" name="up.upload_form">
+                Upload Image
+            <input
+               type="file"
+               ngf-select
+               ng-model="up.file"
+               name="file"
+               ngf-pattern="'image/*'"
+               accept="image/*"
+               ngf-max-size="20MB"
+               ngf-keep="'distinct'"
+               ngf-multiple="true"
+               />
+            
+            <button type="submit" ng-click="up.submit()">submit</button>
+            <p>{{up.progress}}
+            <div ng-repeat="f in up.file" ng-if="f">
+                    <img style="width:100px;" ngf-thumbnail="f || '/thumb.jpg'"/>
+                    <button ng-click="up.del_img(f)">Delete</button>
+            </div>    
+        </form>
+    </body>
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="fileupload.js"></script>
+</html>
